@@ -1,0 +1,32 @@
+.App {
+  background-color: #282c34;
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  min-height: 100vh;
+}
+.Click-counter {
+
+}
+.input {
+  height: 30px;
+  text-align: center;
+}
+
+.input-max {
+  color: red;
+  font-weight: bold;
+  font-size: medium;
+  height: 30px;
+  text-align: center;
+}
+
+.App button {
+  height: 40px;
+  width: 80px;
+}
+
+.Click-counter {
+  background-color: #282c34;
+  margin: 10px auto;
+}
