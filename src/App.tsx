@@ -11,6 +11,9 @@ export type SettingsType = {
 
 function App() {
     //BLL:
+    const [counter, setCounter] = useState(
+
+    )
     const [count, setCount] = useState<number>(0)
     const [inputMax, setInputMax] = useState<boolean>(false)
     const [disabledInc, setDisabledInc] = useState<boolean>(false)
