@@ -1,13 +1,13 @@
-import { Paper } from '@mui/material';
+import {Paper} from '@mui/material';
 import React, {useState} from 'react';
 import './App.css';
 import ClickCounter from "./Components/ClickCounter";
-import { SettingsBox } from './Components/SettingsBox';
+import {SettingsBox} from './Components/SettingsBox';
 
 export type SettingsType = {
-    setMin: number,
-    setMax: number,
-    setStep: number,
+    min: number,
+    max: number,
+    step: number,
 }
 
 function App() {
@@ -17,35 +17,34 @@ function App() {
     const [inputMax, setInputMax] = useState<boolean>(false)
     const [disabledInc, setDisabledInc] = useState<boolean>(false)
     const [disabledReset, setDisabledReset] = useState<boolean>(true)
-    const [settings, setSettings] = useState<SettingsType>({setMin: 0, setMax: 1, setStep: 1})
+    const [settings, setSettings] = useState<SettingsType>({min: 0, max: 5, step: 1})
     const incClick = () => {
-        if (count === settings.setMin && count < settings.setMax - settings.setStep) {
-            setDisabledReset(false)
-            setCount(count + settings.setStep)
-        } else if (count <= settings.setMax - 2 * settings.setStep) {
-            setCount(count + settings.setStep)
-            console.log("1")
-        } else {
-            //alert("Достигнуто максимальное значение")
+        if (count + settings.step > settings.max - settings.step) {
             setDisabledReset(false)
             setInputMax(true)
             setDisabledInc(true)
-            setCount(count + settings.setStep)
-            console.log("2")
+            setCount(count + settings.step)
+        } else if (count === settings.min) {
+            setCount(count + settings.step)
+            setInputMax((count <= settings.max - settings.step) ? false : true)
+            setDisabledReset(false)
+        } else {
+            setCount(count + settings.step)
+            setInputMax((count <= settings.max - settings.step) ? false : true)
         }
     }
     const resetClick = () => {
-        if (count >= settings.setMax - settings.setStep) {
+        if (count >= settings.max - settings.step) {
             setDisabledInc(false)
             setDisabledReset(true)
             setInputMax(false)
-            return setCount(settings.setMin)
-        } else if (count === settings.setMin + settings.setStep) {
+            return setCount(settings.min)
+        } else if (count === settings.min + settings.step) {
             setDisabledReset(true)
-            setCount(count - settings.setStep)
+            setCount(count - settings.step)
         }
-        if (count > settings.setMin) {
-            setCount(count - settings.setStep)
+        if (count > settings.min) {
+            setCount(count - settings.step)
         }
 
     }
