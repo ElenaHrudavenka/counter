@@ -7,6 +7,7 @@
 }
 .Click-counter {
 padding-top: 10px;
+  width: auto;
 }
 .input {
   height: 30px;
@@ -44,4 +45,7 @@ padding-top: 10px;
   max-width: 500px;
   margin: 10px auto;
   padding-bottom: 10px;
+}
+.IconButton {
+font-size: 0.5em;
 }
