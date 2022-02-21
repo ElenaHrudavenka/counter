@@ -8,12 +8,15 @@ import s from './SettingsBox.module.css'
 import LanguageIcon from '@mui/icons-material/Language';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HelpIcon from '@mui/icons-material/Help';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 
 type SettingsPropsType = {
     settings: SettingsType
     disabled: boolean
     settingsSet: (setingsCallback: SettingsType) => void
-    setCount: (setMin: number) => void
+    setCount: (min: number) => void
+    language: string
+    setLanguage: (language: string) => void
 }
 
 export const SettingsBox = (props: SettingsPropsType) => {
@@ -24,11 +27,11 @@ export const SettingsBox = (props: SettingsPropsType) => {
     })
     const [visibleHelp, setVisibleHelp] = useState(false)
     const [visibleSettings, setVisibleSettings] = useState(false)
+
     const onClickHandler = () => {
         props.settingsSet(localSettings)
         props.setCount(localSettings.min)
     }
-
     const onChangeHandlerMin = (eValue: number) => {
         (eValue < localSettings.max) && (eValue <= localSettings.max - localSettings.step) ?
             setLocalSettings({...localSettings, min: eValue}) :
@@ -52,25 +55,31 @@ export const SettingsBox = (props: SettingsPropsType) => {
         setVisibleSettings(!visibleSettings)
         setVisibleHelp(false)
     }
+    const onClickHandlerChangeLang = () => {
+        props.setLanguage(props.language==="ENG" ? "RUS" : "ENG" )
+    }
     return (
         <div>
             <IconButton onClick={onClickSettingsSettings}><SettingsIcon/></IconButton>
             <IconButton onClick={onClickSettingsHelp}><HelpIcon/></IconButton>
+            <IconButton onClick={onClickHandlerChangeLang} style={{fontSize: '0.3em'}}><LanguageOutlinedIcon/>{props.language}</IconButton>
             {visibleSettings &&
                 <>
-                    <h3>Settings</h3>
-                    <span>Set maximum value</span>
+                    <h3>{(props.language === "ENG") ? "Settings" : "Настройки"}</h3>
+                    <span>{(props.language === "ENG") ? "Set maximum value" : "Установить максимальное значение"}</span>
                     <Input type="number" value={localSettings.max} onChange={onChangeHandlerMax}
                            step={localSettings.step}/>
-                    <span> Set minimum value</span>
+                    <span> {(props.language === "ENG") ? "Set minimum value" : "Установите минимальное значение"}</span>
                     <Input type="number" value={localSettings.min} onChange={onChangeHandlerMin}
                            step={localSettings.step}/>
-                    <span>Set step</span>
+                    <span> {(props.language === "ENG") ? "Set step" : "Установить шаг"} </span>
                     <Input type="number" value={localSettings.step} onChange={onClickHandlerStep}/>
-                    <Button name="SET" disabled={props.disabled} callBack={onClickHandler}/>
+                    <Button name={(props.language === "ENG") ? "SET" : "Установить"}
+                            disabled={props.disabled}
+                            callBack={onClickHandler}/>
                 </>}
 
-            {visibleHelp && <Help/>}
+            {visibleHelp && <Help language={props.language}/>}
 
         </div>
     );
