@@ -1,7 +1,8 @@
+import { Paper } from '@mui/material';
 import React, {useState} from 'react';
 import './App.css';
 import ClickCounter from "./Components/ClickCounter";
-import SettingsBox from './Components/SettingsBox';
+import { SettingsBox } from './Components/SettingsBox';
 
 export type SettingsType = {
     setMin: number,
@@ -18,19 +19,19 @@ function App() {
     const [disabledReset, setDisabledReset] = useState<boolean>(true)
     const [settings, setSettings] = useState<SettingsType>({setMin: 0, setMax: 1, setStep: 1})
     const incClick = () => {
-        if (count === settings.setMin && count <= settings.setMax - settings.setStep) {
+        if (count === settings.setMin && count < settings.setMax - settings.setStep) {
             setDisabledReset(false)
             setCount(count + settings.setStep)
-            console.log(settings.setMax - settings.setStep)
         } else if (count <= settings.setMax - 2 * settings.setStep) {
             setCount(count + settings.setStep)
-            console.log(settings.setMax - settings.setStep)
+            console.log("1")
         } else {
             //alert("Достигнуто максимальное значение")
+            setDisabledReset(false)
             setInputMax(true)
             setDisabledInc(true)
             setCount(count + settings.setStep)
-            console.log("3")
+            console.log("2")
         }
     }
     const resetClick = () => {
@@ -62,11 +63,14 @@ function App() {
                 disabledInc={disabledInc}
                 disabledReset={disabledReset}
             />
-            <SettingsBox settings={settings}
-                         disabled={false}
-                         settingsSet={settingsSet}
-                         setCount={setCount}
-            />
+            <Paper className="Paper">
+                <SettingsBox settings={settings}
+                             disabled={false}
+                             settingsSet={settingsSet}
+                             setCount={setCount}
+                />
+            </Paper>
+
         </div>
     );
 }
