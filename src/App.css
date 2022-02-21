@@ -30,3 +30,10 @@
   background-color: #282c34;
   margin: 10px auto;
 }
+.Paper {
+  border: 3px solid chocolate;
+  width: auto;
+  max-width: 500px;
+  margin: 10px auto;
+  padding-bottom: 10px;
+}
