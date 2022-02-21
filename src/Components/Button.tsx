@@ -3,7 +3,7 @@ import React from 'react';
 type ButtonPropsType = {
     name: string
     callBack: () => void
-    disabled:boolean
+    disabled: boolean
 }
 const Button = (props: ButtonPropsType) => {
     const onClickHandler = () => {
