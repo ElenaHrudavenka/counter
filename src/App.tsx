@@ -11,47 +11,47 @@ export type SettingsType = {
 
 function App() {
     //BLL:
-    const [counter, setCounter] = useState(
-
-    )
+    //const [counter, setCounter] = useState()
     const [count, setCount] = useState<number>(0)
     const [inputMax, setInputMax] = useState<boolean>(false)
     const [disabledInc, setDisabledInc] = useState<boolean>(false)
     const [disabledReset, setDisabledReset] = useState<boolean>(true)
-    const [settings, setSettings] = useState<SettingsType>({setMin: 0, setMax: 1,setStep:1})
-
+    const [settings, setSettings] = useState<SettingsType>({setMin: 0, setMax: 1, setStep: 1})
     const incClick = () => {
-        if (count === 0) {
+        if (count === settings.setMin && count <= settings.setMax - settings.setStep) {
             setDisabledReset(false)
-            setCount(count + 1)
-        } else if (count < 4) {
-            setCount(count + 1)
+            setCount(count + settings.setStep)
+            console.log(settings.setMax - settings.setStep)
+        } else if (count <= settings.setMax - 2 * settings.setStep) {
+            setCount(count + settings.setStep)
+            console.log(settings.setMax - settings.setStep)
         } else {
             //alert("Достигнуто максимальное значение")
             setInputMax(true)
             setDisabledInc(true)
-            setCount(count + 1)
+            setCount(count + settings.setStep)
+            console.log("3")
         }
     }
     const resetClick = () => {
-        if (count === 5) {
+        if (count >= settings.setMax - settings.setStep) {
             setDisabledInc(false)
             setDisabledReset(true)
             setInputMax(false)
-            return setCount(0)
-        } else if (count === 1) {
+            return setCount(settings.setMin)
+        } else if (count === settings.setMin + settings.setStep) {
             setDisabledReset(true)
-            setCount(count - 1)
+            setCount(count - settings.setStep)
         }
-        if (count > 0) {
-            //alert(count+1)
-            setCount(count - 1)
+        if (count > settings.setMin) {
+            setCount(count - settings.setStep)
         }
 
     }
-    const settingsSet = () => {
-
+    const settingsSet = (settingsCallback: SettingsType) => {
+        setSettings(settingsCallback)
     }
+
     return (
         <div className="App">
             <ClickCounter
@@ -62,10 +62,12 @@ function App() {
                 disabledInc={disabledInc}
                 disabledReset={disabledReset}
             />
-            <SettingsBox settings = {settings}
-                disabled={false}/>
+            <SettingsBox settings={settings}
+                         disabled={false}
+                         settingsSet={settingsSet}
+                         setCount={setCount}
+            />
         </div>
-
     );
 }
 
