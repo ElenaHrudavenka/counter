@@ -18,31 +18,31 @@ type SettingsPropsType = {
 
 export const SettingsBox = (props: SettingsPropsType) => {
     const [localSettings, setLocalSettings] = useState<SettingsType>({
-        setMin: props.settings.setMin,
-        setMax: props.settings.setMax,
-        setStep: props.settings.setStep,
+        min: props.settings.min,
+        max: props.settings.max,
+        step: props.settings.step,
     })
     const [visibleHelp, setVisibleHelp] = useState(false)
     const [visibleSettings, setVisibleSettings] = useState(false)
     const onClickHandler = () => {
         props.settingsSet(localSettings)
-        props.setCount(localSettings.setMin)
+        props.setCount(localSettings.min)
     }
 
     const onChangeHandlerMin = (eValue: number) => {
-        (eValue < localSettings.setMax) &&
-        (eValue <= localSettings.setMax - localSettings.setStep) &&
-        setLocalSettings({...localSettings, setMin: eValue})
+        (eValue < localSettings.max) && (eValue <= localSettings.max - localSettings.step) ?
+            setLocalSettings({...localSettings, min: eValue}) :
+            setLocalSettings({...localSettings})
     }
     const onChangeHandlerMax = (eValue: number) => {
-        (eValue > localSettings.setMin) &&
-        (eValue >= localSettings.setMin + localSettings.setStep) &&
-        setLocalSettings({...localSettings, setMax: eValue})
+        (eValue > localSettings.min) && (eValue >= localSettings.min + localSettings.step) ?
+            setLocalSettings({...localSettings, max: eValue}) :
+            setLocalSettings({...localSettings})
     }
     const onClickHandlerStep = (eValue: number) => {
-        (eValue >= 0) &&
-        (eValue <= localSettings.setMax - localSettings.setMin) &&
-        setLocalSettings({...localSettings, setStep: eValue})
+        (eValue >= 0) && (eValue <= localSettings.max - localSettings.min) ?
+            setLocalSettings({...localSettings, step: eValue}) :
+            setLocalSettings({...localSettings})
     }
     const onClickSettingsHelp = () => {
         setVisibleHelp(!visibleHelp)
@@ -60,13 +60,13 @@ export const SettingsBox = (props: SettingsPropsType) => {
                 <>
                     <h3>Settings</h3>
                     <span>Set maximum value</span>
-                    <Input type="number" value={localSettings.setMax} onChange={onChangeHandlerMax}
-                           step={localSettings.setStep}/>
+                    <Input type="number" value={localSettings.max} onChange={onChangeHandlerMax}
+                           step={localSettings.step}/>
                     <span> Set minimum value</span>
-                    <Input type="number" value={localSettings.setMin} onChange={onChangeHandlerMin}
-                           step={localSettings.setStep}/>
+                    <Input type="number" value={localSettings.min} onChange={onChangeHandlerMin}
+                           step={localSettings.step}/>
                     <span>Set step</span>
-                    <Input type="number" value={localSettings.setStep} onChange={onClickHandlerStep}/>
+                    <Input type="number" value={localSettings.step} onChange={onClickHandlerStep}/>
                     <Button name="SET" disabled={props.disabled} callBack={onClickHandler}/>
                 </>}
 

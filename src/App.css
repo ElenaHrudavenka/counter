@@ -6,7 +6,7 @@
   min-height: 100vh;
 }
 .Click-counter {
-
+padding-top: 10px;
 }
 .input {
   height: 30px;
@@ -29,6 +29,14 @@
 .Click-counter {
   background-color: #282c34;
   margin: 10px auto;
+}
+.Click-counter Button {
+  color: white;
+  font-weight: bold;
+}
+.Click-counter Button:disabled {
+  color: #0e1115;
+  font-weight: bold;
 }
 .Paper {
   border: 3px solid chocolate;

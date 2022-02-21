@@ -1,5 +1,7 @@
+import { Button } from '@mui/material';
 import React from 'react';
-import Button from "./Button";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import DoDisturbOnOutlinedIcon from '@mui/icons-material/DoDisturbOnOutlined';
 
 type ClickCounterPropsType = {
     incClick: ()=>void
@@ -14,10 +16,16 @@ const ClickCounter = (props:ClickCounterPropsType) => {
     return (
         <div className="Click-counter">
             <h3>ClickCounter</h3>
-            <input className={props.inputMax ? "input-max" : "input"} type="number" value={props.count}/>
+            <input className={props.inputMax ? "input-max" : "input"} type="text" value={props.count}/>
             <div>
-                <Button name={'inc'} callBack={props.incClick} disabled={props.disabledInc} />
-                <Button name={'reset'} callBack={props.resetClick} disabled={props.disabledReset} />
+                <Button startIcon={<AddCircleOutlineIcon />}
+                        size="large"
+                        onClick={props.incClick}
+                        disabled={props.disabledInc}>{'inc'}</Button>
+                <Button endIcon={<DoDisturbOnOutlinedIcon />}
+                        size="large"
+                        onClick={props.resetClick}
+                        disabled={props.disabledReset}>{'reset'}</Button>
             </div>
         </div>
     );
