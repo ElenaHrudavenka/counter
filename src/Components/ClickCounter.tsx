@@ -10,22 +10,23 @@ type ClickCounterPropsType = {
     inputMax: boolean
     disabledInc: boolean
     disabledReset: boolean
+    language: string
 }
 
 const ClickCounter = (props:ClickCounterPropsType) => {
     return (
         <div className="Click-counter">
-            <h3>ClickCounter</h3>
+            <h3>{(props.language === "ENG") ? "ClickCounter" : "Счетчик"}</h3>
             <input className={props.inputMax ? "input-max" : "input"} type="text" value={props.count}/>
             <div>
                 <Button startIcon={<AddCircleOutlineIcon />}
                         size="large"
                         onClick={props.incClick}
-                        disabled={props.disabledInc}>{'inc'}</Button>
+                        disabled={props.disabledInc}>{(props.language === "ENG") ?'inc' : 'увел'} </Button>
                 <Button endIcon={<DoDisturbOnOutlinedIcon />}
                         size="large"
                         onClick={props.resetClick}
-                        disabled={props.disabledReset}>{'reset'}</Button>
+                        disabled={props.disabledReset}>{(props.language === "ENG") ? 'reset' : 'сброс'} </Button>
             </div>
         </div>
     );

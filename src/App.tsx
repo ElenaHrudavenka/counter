@@ -18,6 +18,7 @@ function App() {
     const [disabledInc, setDisabledInc] = useState<boolean>(false)
     const [disabledReset, setDisabledReset] = useState<boolean>(true)
     const [settings, setSettings] = useState<SettingsType>({min: 0, max: 5, step: 1})
+    const [language, setLanguage] = useState("ENG")
     const incClick = () => {
         if (count + settings.step > settings.max - settings.step) {
             setDisabledReset(false)
@@ -34,7 +35,7 @@ function App() {
         }
     }
     const resetClick = () => {
-        if (count >= settings.max - settings.step) {
+        if (count > settings.max - settings.step) {
             setDisabledInc(false)
             setDisabledReset(true)
             setInputMax(false)
@@ -61,12 +62,15 @@ function App() {
                 inputMax={inputMax}
                 disabledInc={disabledInc}
                 disabledReset={disabledReset}
+                language={language}
             />
             <Paper className="Paper">
                 <SettingsBox settings={settings}
                              disabled={false}
                              settingsSet={settingsSet}
                              setCount={setCount}
+                             language={language}
+                             setLanguage={setLanguage}
                 />
             </Paper>
 
