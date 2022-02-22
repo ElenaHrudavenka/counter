@@ -67,11 +67,9 @@ export const SettingsBox = (props: SettingsPropsType) => {
                 <>
                     <h3>{(props.language === "ENG") ? "Settings" : "Настройки"}</h3>
                     <span>{(props.language === "ENG") ? "Set maximum value" : "Установить максимальное значение"}</span>
-                    <Input type="number" value={localSettings.max} onChange={onChangeHandlerMax}
-                           step={localSettings.step}/>
+                    <Input type="number" value={localSettings.max} onChange={onChangeHandlerMax}/>
                     <span> {(props.language === "ENG") ? "Set minimum value" : "Установите минимальное значение"}</span>
-                    <Input type="number" value={localSettings.min} onChange={onChangeHandlerMin}
-                           step={localSettings.step}/>
+                    <Input type="number" value={localSettings.min} onChange={onChangeHandlerMin}/>
                     <span> {(props.language === "ENG") ? "Set step" : "Установить шаг"} </span>
                     <Input type="number" value={localSettings.step} onChange={onClickHandlerStep}/>
                     <Button name={(props.language === "ENG") ? "SET" : "Установить"}
