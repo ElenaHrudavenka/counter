@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AppLocalstorage from './AppLocalstorage';
+import { Provider } from 'react-redux';
+import { store } from './bll/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-{/*<AppLocalstorage />*/}
+{/*    <App />*/}
+    <Provider store={store}><AppLocalstorage/></Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
