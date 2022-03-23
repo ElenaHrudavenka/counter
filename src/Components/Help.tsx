@@ -13,7 +13,7 @@ export const Help = (props: HelpPropsType) => {
                 <ul>
                     <li>The minimum value cannot be greater than the maximum value</li>
                     <li>The step value cannot be greater than the difference between the maximum and minimum values</li>
-                    <li>The value of the maximum and minimum must differ by the step size</li>
+                    <li>The difference between maximum and minimum value cannot be less than the step value</li>
                 </ul>
             </>
             :
@@ -22,7 +22,7 @@ export const Help = (props: HelpPropsType) => {
                 <ul>
                     <li>Минимальное значение не может быть больше максимального значения</li>
                     <li>Значение шага не может быть больше разности максимального и минимального значения</li>
-                    <li>Значение максимума и минима должны отличаться на величину шага</li>
+                    <li>Разница между максимальным и минимальным значением не может быть меньше величины шага</li>
                 </ul>
             </>}
         </div>
