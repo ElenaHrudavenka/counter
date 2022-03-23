@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AppLocalstorage from './AppLocalstorage';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+{/*<AppLocalstorage />*/}
   </React.StrictMode>,
   document.getElementById('root')
 );
